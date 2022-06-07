@@ -7,16 +7,21 @@ use Illuminate\Http\Request;
 
 class StockLocationController extends Controller{
 
-
+    private $model;
+    public function __construct(StockLocation $model)
+    {
+        $this->model = $model;
+    }
+    
     public function index()
     {
-        $data = StockLocation::all();
+        $data = $this->model->all();
         return response()->json($data);
     }
 
     public function show($id)
     {
-        $data = StockLocation::find($id);
+        $data = $this->model->find($id);
         return response()->json($data);
     }
 
@@ -27,7 +32,7 @@ class StockLocationController extends Controller{
             'description'=>'required'
         ]);
 
-        $data = StockLocation::create($request->all());
+        $data = $this->model->create($request->all());
         return response()->json($data);
     }
 
@@ -37,14 +42,14 @@ class StockLocationController extends Controller{
             'id'=>'required',
             'description'=>'required'
         ]);
-        $data = StockLocation::find($id);
+        $data = $this->model->find($id);
         $data->update($request->all());
         return response()->json($data);
     }
 
     public function delete($id)
     {
-        $data = StockLocation::find($id);
+        $data = $this->model->find($id);
         $data->delete();
 
         return response()->json('',201);

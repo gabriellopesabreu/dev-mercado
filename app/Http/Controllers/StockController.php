@@ -7,16 +7,21 @@ use Illuminate\Http\Request;
 
 class StockController extends Controller{
 
+    private $model;
+    public function __construct(Stock $model)
+    {
+        $this->model = $model;
+    }
 
     public function index()
     {
-        $data = Stock::all();
+        $data = $this->model->all();
         return response()->json($data);
     }
 
     public function show($id)
     {
-        $data = Stock::find($id);
+        $data = $this->model->find($id);
         return response()->json($data);
     }
 
@@ -27,7 +32,7 @@ class StockController extends Controller{
             'users_id'=>'required'
         ]);
 
-        $data = Stock::create($request->all());
+        $data = $this->model->create($request->all());
         return response()->json($data);
     }
 
@@ -37,14 +42,14 @@ class StockController extends Controller{
             'number'=>'required',
             'users_id'=>'required'
         ]);
-        $data = Stock::find($id);
+        $data = $this->model->find($id);
         $data->update($request->all());
         return response()->json($data);
     }
 
     public function delete($id)
     {
-        $data = Stock::find($id);
+        $data = $this->model->find($id);
         $data->delete();
 
         return response()->json('',201);

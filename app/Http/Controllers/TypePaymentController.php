@@ -7,16 +7,21 @@ use Illuminate\Http\Request;
 
 class TypePaymentController extends Controller{
 
+    private $model;
+    public function __construct(TypePayment $model)
+    {
+        $this->model = $model;
+    }
 
     public function index()
     {
-        $data = TypePayment::all();
+        $data = $this->model->all();
         return response()->json($data);
     }
 
     public function show($id)
     {
-        $data = TypePayment::find($id);
+        $data = $this->model->find($id);
         return response()->json($data);
     }
 
@@ -26,7 +31,7 @@ class TypePaymentController extends Controller{
             'name' => 'required'
         ]);
 
-        $data = TypePayment::create($request->all());
+        $data = $this->model->create($request->all());
         return response()->json($data);
     }
 
@@ -35,14 +40,14 @@ class TypePaymentController extends Controller{
         $request->validate([
             'name' => 'required'
         ]);
-        $data = TypePayment::find($id);
+        $data = $this->model->find($id);
         $data->update($request->all());
         return response()->json($data);
     }
 
     public function delete($id)
     {
-        $data = TypePayment::find($id);
+        $data = $this->model->find($id);
         $data->delete();
 
         return response()->json('',201);

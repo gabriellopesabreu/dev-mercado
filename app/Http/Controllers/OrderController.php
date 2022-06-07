@@ -7,16 +7,21 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller{
 
+    private $model;
+    public function __construct(Order $model)
+    {
+        $this->model = $model;
+    }
 
     public function index()
     {
-        $data = Order::all();
+        $data = $this->model->all();
         return response()->json($data);
     }
 
     public function show($id)
     {
-        $data = Order::find($id);
+        $data = $this->model->find($id);
         return response()->json($data);
     }
 
@@ -27,7 +32,7 @@ class OrderController extends Controller{
             'users_id'=>'required'
         ]);
 
-        $data = Order::create($request->all());
+        $data = $this->model->create($request->all());
         return response()->json($data);
     }
 
@@ -37,14 +42,14 @@ class OrderController extends Controller{
             'number'=>'required',
             'users_id'=>'required'
         ]);
-        $data = Order::find($id);
+        $data = $this->model->find($id);
         $data->update($request->all());
         return response()->json($data);
     }
 
     public function delete($id)
     {
-        $data = Order::find($id);
+        $data = $this->model->find($id);
         $data->delete();
 
         return response()->json('',201);

@@ -7,16 +7,21 @@ use Illuminate\Http\Request;
 
 class OrderItemController extends Controller{
 
+    private $model;
+    public function __construct(OrderItem $model)
+    {
+        $this->model = $model;
+    }
 
     public function index()
     {
-        $data = OrderItem::all();
+        $data = $this->model->all();
         return response()->json($data);
     }
 
     public function show($seq)
     {
-        $data = OrderItem::find($seq);
+        $data = $this->model->find($seq);
         return response()->json($data);
     }
 
@@ -28,7 +33,7 @@ class OrderItemController extends Controller{
             'value'=> 'requeried'
         ]);
 
-        $data = OrderItem::create($request->all());
+        $data = $this->model->create($request->all());
         return response()->json($data);
     }
 
@@ -39,14 +44,14 @@ class OrderItemController extends Controller{
             'quantity'=> 'requeried',
             'value'=> 'requeried'
         ]);
-        $data = OrderItem::find($seq);
+        $data = $this->model->find($seq);
         $data->update($request->all());
         return response()->json($data);
     }
 
     public function delete($seq)
     {
-        $data = OrderItem::find($seq);
+        $data = $this->model->find($seq);
         $data->delete();
 
         return response()->json('',201);

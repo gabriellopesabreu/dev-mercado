@@ -7,16 +7,21 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller{
 
+    private $model;
+    public function __construct(User $model)
+    {
+        $this->model = $model;
+    }
 
     public function index()
     {
-        $data = User::all();
+        $data = $this->model->all();
         return response()->json($data);
     }
 
     public function show($id)
     {
-        $data = User::find($id);
+        $data = $this->model->find($id);
         return response()->json($data);
     }
 
@@ -28,7 +33,7 @@ class UserController extends Controller{
             'password'=>'required'
         ]);
 
-        $data = User::create($request->all());
+        $data = $this->model->create($request->all());
         return response()->json($data);
     }
 
@@ -39,14 +44,14 @@ class UserController extends Controller{
             'email'=>'required',
             'password'=>'required'
         ]);
-        $data = User::find($id);
+        $data = $this->model->find($id);
         $data->update($request->all());
         return response()->json($data);
     }
 
     public function delete($id)
     {
-        $data = User::find($id);
+        $data = $this->model->find($id);
         $data->delete();
 
         return response()->json('',201);
