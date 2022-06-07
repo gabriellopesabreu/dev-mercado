@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -25,25 +26,14 @@ class UserController extends Controller{
         return response()->json($data);
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'email'=>'required',
-            'password'=>'required'
-        ]);
-
         $data = $this->model->create($request->all());
         return response()->json($data);
     }
 
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        $request->validate([
-            'name'=>'required',
-            'email'=>'required',
-            'password'=>'required'
-        ]);
         $data = $this->model->find($id);
         $data->update($request->all());
         return response()->json($data);

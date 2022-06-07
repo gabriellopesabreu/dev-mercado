@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductsRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -25,27 +26,14 @@ class ProductsController extends Controller{
         return response()->json($data);
     }
 
-    public function store(Request $request)
+    public function store(ProductsRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'price'=> 'required',
-            'bulk_slug'=> 'required',
-            'category_id'=> 'required'
-        ]);
-
         $data = $this->model->create($request->all());
         return response()->json($data);
     }
 
-    public function update(Request $request, $id)
+    public function update(ProductsRequest $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'price'=> 'required',
-            'bulk_slug'=> 'required',
-            'category_id'=> 'required'
-        ]);
         $data = $this->model->find($id);
         $data->update($request->all());
         return response()->json($data);

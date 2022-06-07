@@ -24,7 +24,9 @@ class ProductsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'bulk_slug'=> 'required',
+            'category_id'=> 'required'
         ];
     }
 }
