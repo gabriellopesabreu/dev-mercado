@@ -22,21 +22,17 @@ class OrderController extends Controller{
 
     public function show($id)
     {
-        $data = $this->model->find($id);
-        return response()->json($data);
+        //
     }
 
     public function store(OrderRequest $request)
     {
-        $data = $this->model->create($request->all());
-        return response()->json($data);
+        //
     }
 
     public function update(OrderRequest $request, $id)
     {
-        $data = $this->model->find($id);
-        $data->update($request->all());
-        return response()->json($data);
+        //
     }
 
     public function delete($id)
