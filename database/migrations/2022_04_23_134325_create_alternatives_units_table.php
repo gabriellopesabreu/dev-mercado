@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('alternatives_units', function (Blueprint $table) {
             $table->unsignedInteger('product_id');
             $table->string('bulk_slug',2);
-            $table->double('quantity');
+            $table->double('quantity')->default(0);
             $table->string('divide_or_multiply',1);
             $table->timestamps();
             $table->foreign('product_id')->references('id')->on('products');

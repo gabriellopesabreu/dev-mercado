@@ -14,16 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders_items', function (Blueprint $table) {
-            $table->unsignedInteger('seq')->primary();
+            //$table->unsignedInteger('seq')->primary();
             $table->unsignedInteger('order_id');
             $table->unsignedInteger('product_id');
-            $table->unsignedDouble('quantity');
-            $table->unsignedDouble('value');
-            $table->unsignedDouble('discount');
-            $table->unsignedDouble('perc_discount');
+            $table->unsignedDouble('quantity')->default(0);;
+            $table->unsignedDouble('value')->default(0);;
+            //$table->unsignedDouble('discount')->default(0);
+            //$table->unsignedDouble('perc_discount')->default(0);;
             $table->timestamps();
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('product_id')->references('id')->on('products');
+
+            $table->primary('order_id', 'product_id');
         });
     }
 

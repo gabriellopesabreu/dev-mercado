@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('stock_location_id');
-            $table->unsignedDouble('quantity');
+            $table->unsignedDouble('quantity')->default(0);
             $table->string('lote',45);
             $table->timestamps();
             $table->foreign('product_id')->references('id')->on('products');

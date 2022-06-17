@@ -4,10 +4,10 @@ use App\Http\Controllers\BulkController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\OrderItemController;
+//use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StockLocationController;
-//use App\Http\Controllers\StockController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TypePaymentController;
 //use App\Http\Controllers\UserHasCustomerController;
@@ -39,6 +39,7 @@ Route::get('products/{id}',[ProductsController::class,'show']);
 Route::post('products',[ProductsController::class,'store']);
 Route::put('products/{id}',[ProductsController::class,'update']);
 Route::delete('products/{id}',[ProductsController::class,'delete']);
+//Route::delete('products/{id}/alternative_units',[ProductsController::class,'ListAlternativeUnits']);
 
 //categories
 Route::get('categories',[CategoryController::class,'index']);
@@ -54,12 +55,15 @@ Route::post('customers',[CustomerController::class,'store']);
 Route::put('customers/{id}',[CustomerController::class,'update']);
 Route::delete('customers/{id}',[CustomerController::class,'delete']);
 
+/* não precisa ter rota própria, em outras tabelas seram adicionadas mais rotas
+para acessar os campos de orders_items
 //orders_items
 Route::get('orders_items',[OrderItemController::class,'index']);
 Route::get('orders_items/{seq}',[OrderItemController::class,'show']);
 Route::post('orders_items',[OrderItemController::class,'store']);
 Route::put('orders_items/{seq}',[OrderItemController::class,'update']);
 Route::delete('orders_items/{seq}',[OrderItemController::class,'delete']);
+*/
 
 //orders
 Route::get('orders',[OrderController::class,'index']);
@@ -75,14 +79,10 @@ Route::post('stocks_locations',[StockLocationController::class,'store']);
 Route::put('stocks_locations/{id}',[StockLocationController::class,'update']);
 Route::delete('stocks_locations/{id}',[StockLocationController::class,'delete']);
 
-/*
+// regra de negocio mencioanda no video 3
 //stocks
 Route::get('stocks',[StockController::class,'index']);
-Route::get('stocks/{???}',[StockController::class,'show']);
-Route::post('stocks',[StockController::class,'store']);
-Route::put('stocks/{???}',[StockController::class,'update']);
-Route::delete('stocks/{???}',[StockController::class,'delete']);
-*/
+
 
 //users
 Route::get('users',[UserController::class,'index']);
@@ -98,7 +98,8 @@ Route::post('type_payments',[TypePaymentController::class,'store']);
 Route::put('type_payments/{id}',[TypePaymentController::class,'update']);
 Route::delete('type_payments/{id}',[TypePaymentController::class,'delete']);
 
-/*
+/* não precisa ter rota própria, em outras tabelas seram adicionadas mais rotas
+para acessar os campos de orders_items
 //user_has_customers
 Route::get('user_has_customers',[UserHasCustomerController::class,'index']);
 Route::get('user_has_customers/{??}',[UserHasCustomerController::class,'show']);
@@ -107,7 +108,8 @@ Route::put('user_has_customers/{??}',[UserHasCustomerController::class,'update']
 Route::delete('user_has_customers/{??}',[UserHasCustomerController::class,'delete']);
 */
 
-/*
+/* não precisa ter rota própria, em outras tabelas seram adicionadas mais rotas
+para acessar os campos de orders_items
 //alternatives_units
 Route::get('alternatives_units',[AlternativeUnitController::class,'index']);
 Route::get('alternatives_units/{??}',[AlternativeUnitController::class,'show']);

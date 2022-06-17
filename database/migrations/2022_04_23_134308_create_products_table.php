@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',45);
             $table->unsignedDouble('price')->default(0);
-            $table->longText('description')->default(0);
+            $table->longText('description')->nullable();
             $table->string('color',45)->nullable();
             $table->unsignedDouble('quantity')->default(0);
             $table->unsignedDouble('height')->default(0);
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->unsignedDouble('depth')->default(0);
             $table->unsignedDouble('weight')->default(0);
             $table->unsignedInteger('category_id');
-            $table->boolean('active')->nullable();
+            $table->boolean('active')->default(true);
             $table->string('bulk_slug',2);
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
