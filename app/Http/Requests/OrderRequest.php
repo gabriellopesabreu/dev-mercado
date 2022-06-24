@@ -25,7 +25,8 @@ class OrderRequest extends FormRequest
     {
         return [
             'number'=>'required',
-            'users_id'=>'required'
+            'users_id'=>'required',
+            'date'=>'required'
         ];
     }
 }

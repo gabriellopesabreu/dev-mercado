@@ -17,12 +17,7 @@ class OrderSeeder extends Seeder
     {
         Order::create([
         'number'=> 1,
-        'users_id'=> 1,
-        'date' => 01/01/01,
-        'type'=> '1',
-        'status'=>'T',
-        'customer_id'=> '1',
-        'type_payment_id' => 1
+        'observation'=> "riscando a caceta."
         ]);
     }
 }

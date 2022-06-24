@@ -25,7 +25,6 @@ class OrderItemRequest extends FormRequest
     {
         return [
             'product_id'=> 'requeried',
-            'quantity'=> 'requeried',
             'value'=> 'requeried'
         ];
     }

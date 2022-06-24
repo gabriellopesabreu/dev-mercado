@@ -18,7 +18,8 @@ class ProductSeeder extends Seeder
         Product::create([
             'name'=>'Redmi Note 8',
             'category_id'=> 1,
-            'bulk_slug'=>'kg'
+            'bulk_slug'=>'kg',
+            'price'=> 1000
 
 
         ]);
