@@ -30,4 +30,12 @@ class Customer extends Model
     public $incrementing = true;
     */
 
+    public function order() {
+        return $this->hasMany(Order::class);
+    }
+
+    public function userHasCustomers() {
+        return $this->hasMany(UserHasCustomer::class);
+    }
+
 }
