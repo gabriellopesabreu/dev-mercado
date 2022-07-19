@@ -21,8 +21,16 @@ class Category extends Model
     public $incrementing = true;
     */
 
-    public function category() {
-        return $this->hasMany(Category::class);
+    public function product() {
+        return $this->hasMany(Product::class);
+    }
+
+    public function children() {
+        return $this->hasMany(Category::class, 'category_id', 'id');
+    }
+
+    public function father() {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
 }

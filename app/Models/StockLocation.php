@@ -22,4 +22,7 @@ class StockLocation extends Model
     public $incrementing = true;
     */
 
+    public function stock() {
+        return $this->hasMany(Stock::class);
+    }
 }

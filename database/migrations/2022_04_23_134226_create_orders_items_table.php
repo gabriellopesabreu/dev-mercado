@@ -17,12 +17,12 @@ return new class extends Migration
             //$table->unsignedInteger('seq')->primary();
             $table->unsignedInteger('order_id');
             $table->unsignedInteger('product_id');
-            $table->unsignedDouble('quantity')->default(0);;
-            $table->unsignedDouble('value')->default(0);;
+            $table->unsignedDouble('quantity')->default(0);
+            $table->unsignedDouble('value')->default(0);
             //$table->unsignedDouble('discount')->default(0);
             //$table->unsignedDouble('perc_discount')->default(0);;
             $table->timestamps();
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products');
 
             $table->primary('order_id', 'product_id');

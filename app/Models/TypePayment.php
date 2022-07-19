@@ -21,4 +21,7 @@ class TypePayment extends Model
     public $incrementing = true;
     */
 
+    public function order() {
+        return $this->hasMany(Order::class);
+    }
 }

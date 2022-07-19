@@ -16,7 +16,7 @@ class OrderController extends Controller{
 
     public function index()
     {
-        $data = $this->model->all();
+        $data = $this->model->with('items')->get();
         return response()->json($data);
     }
 
@@ -27,7 +27,15 @@ class OrderController extends Controller{
 
     public function store(OrderRequest $request)
     {
-        //
+        //$max_number = DB::table('orders')->max('number');
+
+        $request_data = $request->all();
+        $order = Order::create($request_data);
+        foreach ($request_data['items'] as $item) {
+            $order->items()->create($item);
+        }
+
+        return response()->json($order);
     }
 
     public function update(OrderRequest $request, $id)

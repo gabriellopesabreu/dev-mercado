@@ -18,12 +18,23 @@ class Order extends Model
 
     ];
 
+    protected $appends = [
+        'total_order'
+    ];
+
     protected $table = 'orders';
     /*
     protected $keyType = 'int';
     protected $primaryKey = 'id';
     public $incrementing = true;
     */
+
+    public function getTotalOrderAttribute() {
+        return $this->items
+        ->reduce(function(int $valor, OrderItem $item_Linha){
+            return $valor = $valor + ($item_Linha->value * $item_Linha->quantity);
+        },0);
+    }
 
     public function items() {
         return $this->hasMany(OrderItem::class);

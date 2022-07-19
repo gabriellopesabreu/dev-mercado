@@ -15,9 +15,9 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        Order::create([
+        Order::updateOrCreate([
         'number'=> 1,
-        'observation'=> "riscando a caceta."
+        'observation'=> "riscando a caceta.",
         ]);
     }
 }
