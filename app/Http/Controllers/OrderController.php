@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
+use App\Models\Customer;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller{
 
@@ -27,10 +29,14 @@ class OrderController extends Controller{
 
     public function store(OrderRequest $request)
     {
-        //$max_number = DB::table('orders')->max('number');
+        $max_number = DB::table('orders')->max('number');
 
         $request_data = $request->all();
-        $order = Order::create($request_data);
+        $order = Order::create([
+            'number' => $max_number+1,
+            'date' => $request_data['date'],
+            'observation' => $request_data['observation'],  
+        ]);
         foreach ($request_data['items'] as $item) {
             $order->items()->create($item);
         }

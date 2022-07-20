@@ -17,6 +17,7 @@ class OrderSeeder extends Seeder
     {
         Order::updateOrCreate([
         'number'=> 1,
+        'date' => '00/00/2020',
         'observation'=> "riscando a caceta.",
         ]);
     }
